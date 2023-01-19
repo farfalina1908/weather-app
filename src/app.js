@@ -27,7 +27,7 @@ function displayForecast(response) {
     let forecast = response.data.daily;
     let forecastElement = document.querySelector("#forecast");
     let forecastHTML = `<div class="row">`;
-    // let days = ["Thu", "Fri", "Sat", "Sun"];
+   
     forecast.forEach(function(forecastDay, index) { 
         if (index < 6) {
     forecastHTML = forecastHTML + `
@@ -55,9 +55,9 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-console.log(coordinates);
+
 let apiKey = "c119ffef35b7245a5e03b6e5724ae961";
-let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&unit=metric`;
+let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(displayForecast);
 }
 
@@ -101,34 +101,34 @@ function handleSubmit(event) {
     
 }
 
-function displayFahrenheitTemp(event) {
-    event.preventDefault();
-    let temperatureElement = document.querySelector("#temperature");  
-    celsiusLink.classList.remove("active");
-    fahrenheitLink.classList.add("active");
-    let fahrenheitTemperature = (celsiusTemperature * 9) / 5 +32;
+// function displayFahrenheitTemp(event) {
+//     event.preventDefault();
+//     let temperatureElement = document.querySelector("#temperature");  
+//     celsiusLink.classList.remove("active");
+//     fahrenheitLink.classList.add("active");
+//     let fahrenheitTemperature = (celsiusTemperature * 9) / 5 +32;
     
-    temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
+//     temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+// }
 
-function displayCelsiusTemp(event) {
-    event.preventDefault();
-    let temperatureElement = document.querySelector("#temperature");   
-    celsiusLink.classList.add("active");
-    fahrenheitLink.classList.remove("active");  
-    temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
+// function displayCelsiusTemp(event) {
+//     event.preventDefault();
+//     let temperatureElement = document.querySelector("#temperature");   
+//     celsiusLink.classList.add("active");
+//     fahrenheitLink.classList.remove("active");  
+//     temperatureElement.innerHTML = Math.round(celsiusTemperature);
+// }
 
-let celsiusTemperature = null;
+// let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+// let fahrenheitLink = document.querySelector("#fahrenheit-link");
+// fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemp);
+// let celsiusLink = document.querySelector("#celsius-link");
+// celsiusLink.addEventListener("click", displayCelsiusTemp);
 
 search("Dnipro");
 displayForecast();
